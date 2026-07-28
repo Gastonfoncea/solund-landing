@@ -34,7 +34,7 @@ export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span className={`flex items-center gap-2.5 ${className}`}>
       <SunMark className="h-[1.15em] w-[1.15em] text-signal" />
-      <span className="font-display text-[1.05em] font-semibold tracking-[-0.015em]">
+      <span className="font-display text-[1.05em] font-extrabold tracking-[-0.025em]">
         Solund
       </span>
     </span>

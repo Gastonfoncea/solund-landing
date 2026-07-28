@@ -12,8 +12,17 @@
   --color-signal: #ff6e2c; /* "primera luz" — solo lo que importa */
   --color-onsignal: #2a1206;
 
-  --font-display: var(--font-fraunces);
+  /* Paradas del `unlockGradient` de Theme.swift (el clímax de la misión). */
+  --color-ember: #c24a18;
+  --color-flare: #ff8a3c;
+
+  /* Una sola familia, como en la app: la jerarquía la hacen peso y ancho. */
   --font-sans: var(--font-archivo);
+  --font-display: var(--font-archivo);
+
+  /* La curva de SwiftUI `.easeOut`, que es la que usa toda la app
+     (0.2s el toggle, 0.3s el progreso, 0.35s el unlock). */
+  --ease-out-swift: cubic-bezier(0, 0, 0.58, 1);
 }
 
 @layer base {
@@ -49,10 +58,38 @@
 }
 
 @utility font-display {
-  /* Fraunces con las astas rectas: la variante "wonky" es simpática y esta
-     marca no lo es. Firme, no juguetona. */
-  font-family: var(--font-display), ui-serif, Georgia, serif;
-  font-variation-settings: "SOFT" 0, "WONK" 0;
+  /* El equivalente web de `.fontWidth(.expanded)`: Archivo abre el eje `wdth`
+     hasta 125. A 112 las astas quedan anchas y plantadas como los numerales
+     héroe de MissionView, sin caer en el ancho de cartel. El `wght` lo sigue
+     manejando `font-weight` (Tailwind), así que no se declara acá. */
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: "wdth" 112;
+}
+
+@utility numeral {
+  /* Los numerales de la app: negros, expandidos y tabulares — la cifra no
+     tiene que bailar mientras sube. */
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: "wdth" 125;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+}
+
+@utility pill {
+  /* La cápsula de la app: 12px bold, kerning 1.8 sobre 13px ≈ 0.14em,
+     fondo al 8% y borde al 35% del color que la pinte. */
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border-width: 1px;
+  padding-inline: 0.9rem;
+  padding-block: 0.42rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 @utility grain {
@@ -85,6 +122,41 @@
     linear-gradient(to bottom, #15100f 0%, #15100f 46%, #1d1614 78%, #241b18 100%);
 }
 
+@utility unlock {
+  /* `Theme.unlockGradient`: ámbar UNIFORME, no horizonte. Es la única
+     superficie de la marca donde el naranja va full-bleed y el texto se
+     invierte a oscuro — en la app aparece una sola vez, al completar la
+     misión. Acá también aparece una sola vez, en el cierre. */
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-ember) 0%,
+    var(--color-signal) 50%,
+    var(--color-flare) 100%
+  );
+}
+
+@utility phone {
+  /* Marco de iPhone. Los radios van en porcentaje porque el teléfono es
+     fluido: 12.8% del ancho / 5.9% del alto es el radio real de la pantalla
+     (~55pt sobre 430×932). El bisel es un padding, no un borde, así que la
+     captura queda inscrita sin recortarse. */
+  position: relative;
+  padding: 1.5%;
+  border-radius: 12.8% / 5.9%;
+  background-color: #0b0807;
+  box-shadow:
+    0 0 0 1px rgba(255, 247, 240, 0.09),
+    0 32px 70px -24px rgba(0, 0, 0, 0.85),
+    0 0 90px -30px rgba(255, 110, 44, 0.35);
+
+  & img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 11.4% / 5.3%;
+  }
+}
+
 /* Entrada: una sola secuencia escalonada al cargar. Más memorable que veinte
    micro-interacciones sueltas. */
 @keyframes rise {
@@ -98,9 +170,26 @@
   }
 }
 
+/* El unlock de la app: la pantalla se enciende de golpe y el contenido crece
+   apenas. Acá lo hereda el teléfono del hero. */
+@keyframes wake {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .enter {
-    animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: rise 0.8s var(--ease-out-swift) both;
+  }
+
+  .enter-wake {
+    animation: wake 1.1s var(--ease-out-swift) both;
   }
 }
 

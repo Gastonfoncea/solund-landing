@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Phone } from "@/app/components/phone";
 import { PRICING, SITE } from "@/app/lib/site";
 
 const STEPS = [
@@ -37,45 +38,52 @@ const NEVER = [
 export default function Home() {
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────────────── */}
+      {/* ── Hero ─────────────────────────────────────────────────
+          El teléfono a la derecha, grande, y desbordando por abajo: la mitad
+          inferior de la home es degradado vacío, así que recortarla no pierde
+          nada y hace que la pantalla se sienta más cerca. */}
       <section className="horizon grain relative overflow-hidden">
-        <div className="relative z-10 mx-auto flex min-h-[92svh] max-w-6xl flex-col justify-center px-6 pt-32 pb-24 sm:px-10">
-          <p
-            className="enter text-xs tracking-[0.22em] text-signal uppercase"
-            style={{ animationDelay: "0ms" }}
-          >
-            For iPhone · Coming soon
-          </p>
+        <div className="relative z-10 mx-auto grid min-h-[92svh] max-w-6xl items-center gap-y-14 px-6 pt-32 sm:px-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-16">
+          <div className="pb-20 lg:pb-0">
+            <p
+              className="enter pill border-signal/35 bg-signal/8 text-signal"
+              style={{ animationDelay: "0ms" }}
+            >
+              For iPhone · Coming soon
+            </p>
 
-          <h1
-            className="enter font-display mt-7 max-w-[15ch] text-[clamp(2.9rem,8.5vw,6.5rem)] leading-[0.98] font-semibold tracking-[-0.03em] text-balance"
-            style={{ animationDelay: "90ms" }}
-          >
-            Mornings aren&rsquo;t for scrolling.
-          </h1>
+            <h1
+              className="enter font-display mt-7 max-w-[13ch] text-[clamp(2.7rem,7.6vw,5.4rem)] leading-[0.94] font-extrabold tracking-[-0.035em] text-balance"
+              style={{ animationDelay: "90ms" }}
+            >
+              Mornings aren&rsquo;t for scrolling.
+            </h1>
 
-          <p
-            className="enter mt-8 max-w-[46ch] text-lg leading-relaxed text-muted sm:text-xl"
-            style={{ animationDelay: "180ms" }}
-          >
-            An alarm that locks your apps until you get up and walk. You
-            don&rsquo;t need more willpower at 7am. You need something in the
-            way.
-          </p>
+            <p
+              className="enter mt-8 max-w-[42ch] text-lg leading-relaxed text-muted"
+              style={{ animationDelay: "180ms" }}
+            >
+              An alarm that locks your apps until you get up and walk. You
+              don&rsquo;t need more willpower at 7am. You need something in the
+              way.
+            </p>
 
-          <div
-            className="enter mt-11 flex flex-wrap items-center gap-x-6 gap-y-4"
-            style={{ animationDelay: "270ms" }}
-          >
-            <span className="inline-flex items-center rounded-full border border-signal/45 px-5 py-2.5 text-sm font-medium text-signal">
-              Coming to the App Store
-            </span>
             <Link
               href="#how"
-              className="text-sm text-muted underline decoration-faint underline-offset-[6px] transition-colors hover:text-ink hover:decoration-signal"
+              className="enter mt-10 inline-block text-sm text-muted underline decoration-faint underline-offset-[6px] transition-colors hover:text-ink hover:decoration-signal"
+              style={{ animationDelay: "270ms" }}
             >
               See how it works
             </Link>
+          </div>
+
+          <div className="enter-wake -mb-24 flex justify-center sm:-mb-32 lg:-mb-40 lg:justify-end">
+            <Phone
+              shot="home"
+              priority
+              sizes="(min-width: 1024px) 400px, (min-width: 640px) 320px, 260px"
+              className="w-[260px] sm:w-[320px] lg:w-[400px]"
+            />
           </div>
         </div>
       </section>
@@ -83,7 +91,7 @@ export default function Home() {
       {/* ── La tesis ─────────────────────────────────────────── */}
       <section className="border-y border-faint/20">
         <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
-          <blockquote className="reveal font-display max-w-[24ch] text-[clamp(1.9rem,4.6vw,3.4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-balance">
+          <blockquote className="reveal font-display max-w-[22ch] text-[clamp(1.9rem,4.4vw,3.2rem)] leading-[1.04] font-extrabold tracking-[-0.03em] text-balance">
             At 7am, willpower doesn&rsquo;t exist.{" "}
             <span className="text-signal">Friction does.</span>
           </blockquote>
@@ -96,40 +104,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Cómo funciona ────────────────────────────────────── */}
+      {/* ── Cómo funciona ────────────────────────────────────────
+          Una sola captura: la misión es la única pantalla que explica el
+          producto entero. Las otras dos no agregaban nada que el texto no
+          dijera ya. */}
       <section id="how" className="scroll-mt-24">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
-          <h2 className="reveal font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight font-semibold tracking-[-0.02em]">
-            Three steps, once.
-          </h2>
+        <div className="mx-auto grid max-w-6xl items-center gap-x-20 gap-y-16 px-6 py-24 sm:px-10 sm:py-32 lg:grid-cols-[auto_minmax(0,1fr)]">
+          <div className="reveal flex justify-center lg:justify-start">
+            <Phone
+              shot="mission"
+              sizes="(min-width: 1024px) 320px, (min-width: 640px) 300px, 250px"
+              className="w-[250px] sm:w-[300px] lg:w-[320px]"
+            />
+          </div>
 
-          <ol className="mt-16 grid gap-x-12 gap-y-14 md:grid-cols-3">
-            {STEPS.map((step) => (
-              <li key={step.n} className="reveal">
-                <div
-                  className="font-display text-5xl leading-none font-semibold text-signal tabular-nums sm:text-6xl"
-                  aria-hidden="true"
-                >
-                  {step.n}
-                </div>
-                <h3 className="font-display mt-6 text-xl font-semibold tracking-[-0.01em] sm:text-2xl">
-                  {step.title}
-                </h3>
-                <p className="mt-3.5 text-[0.975rem] leading-relaxed text-muted">
-                  {step.body}
-                </p>
-              </li>
-            ))}
-          </ol>
+          <div>
+            <h2 className="reveal font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight font-extrabold tracking-[-0.03em]">
+              Three steps, once.
+            </h2>
+
+            <ol className="mt-12 space-y-11">
+              {STEPS.map((step) => (
+                <li key={step.n} className="reveal flex gap-5 sm:gap-7">
+                  <span
+                    className="numeral shrink-0 pt-0.5 text-2xl text-signal"
+                    aria-hidden="true"
+                  >
+                    {step.n}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl font-extrabold tracking-[-0.02em]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-[46ch] text-[0.975rem] leading-relaxed text-muted">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
       {/* ── Lo que no hace ───────────────────────────────────── */}
-      <section className="border-t border-faint/20 bg-surface/35">
+      <section className="border-t border-faint/20 bg-surface/30">
         <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
           <div className="grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
             <div className="reveal">
-              <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight font-semibold tracking-[-0.02em] text-balance">
+              <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-[1.05] font-extrabold tracking-[-0.03em] text-balance">
                 An app that blocks apps should be the last one you trust.
               </h2>
               <p className="mt-6 max-w-[42ch] text-base leading-relaxed text-muted">
@@ -151,7 +174,7 @@ export default function Home() {
                   key={item.title}
                   className="reveal border-l border-signal/35 pl-6"
                 >
-                  <h3 className="font-display text-lg font-semibold tracking-[-0.01em] sm:text-xl">
+                  <h3 className="font-display text-lg font-extrabold tracking-[-0.02em] sm:text-xl">
                     {item.title}
                   </h3>
                   <p className="mt-2.5 text-[0.975rem] leading-relaxed text-muted">
@@ -169,7 +192,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
           <div className="grid items-end gap-12 md:grid-cols-2 md:gap-20">
             <div className="reveal">
-              <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight font-semibold tracking-[-0.02em]">
+              <h2 className="font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight font-extrabold tracking-[-0.03em]">
                 {PRICING.trialDays} days free.
               </h2>
               <p className="mt-6 max-w-[40ch] text-base leading-relaxed text-muted">
@@ -186,16 +209,20 @@ export default function Home() {
                     Best value
                   </span>
                 </dt>
-                <dd className="font-display text-xl font-semibold tabular-nums">
+                <dd className="numeral text-2xl">
                   {PRICING.annual}
-                  <span className="text-base font-normal text-muted">/yr</span>
+                  <span className="ml-1 text-base font-medium text-muted">
+                    /yr
+                  </span>
                 </dd>
               </div>
               <div className="flex items-baseline justify-between gap-6 py-5">
                 <dt className="text-base">Monthly</dt>
-                <dd className="font-display text-xl font-semibold tabular-nums">
+                <dd className="numeral text-2xl">
                   {PRICING.monthly}
-                  <span className="text-base font-normal text-muted">/mo</span>
+                  <span className="ml-1 text-base font-medium text-muted">
+                    /mo
+                  </span>
                 </dd>
               </div>
             </dl>
@@ -216,19 +243,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Cierre ───────────────────────────────────────────── */}
-      <section className="horizon grain relative overflow-hidden border-t border-faint/20">
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-28 text-center sm:px-10 sm:py-36">
-          <h2 className="reveal font-display mx-auto max-w-[18ch] text-[clamp(2.1rem,5.4vw,4rem)] leading-[0.98] font-semibold tracking-[-0.03em] text-balance">
+      {/* ── Cierre: el unlock ────────────────────────────────────
+          La única superficie naranja full-bleed del sitio, igual que en la
+          app hay una sola pantalla así — la de la misión cumplida. El 30/30
+          cierra lo que el 18/30 de la captura de arriba dejó abierto. */}
+      <section className="unlock grain relative overflow-hidden text-onsignal">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-32 text-center sm:px-10 sm:py-40">
+          {/* Decorativo: el sentido lo lleva el h2. Leído en voz alta, un
+              "treinta barra treinta" suelto no significa nada. */}
+          <p
+            className="reveal numeral text-[clamp(3.4rem,11vw,7rem)]"
+            aria-hidden="true"
+          >
+            30/30
+          </p>
+          <h2 className="reveal font-display mx-auto mt-6 max-w-[18ch] text-[clamp(1.9rem,4.6vw,3.2rem)] leading-[1.02] font-extrabold tracking-[-0.035em] text-balance">
             Up. The day is yours.
           </h2>
-          <p className="reveal mx-auto mt-7 max-w-[40ch] text-base leading-relaxed text-muted sm:text-lg">
+          <p className="reveal mx-auto mt-6 max-w-[40ch] text-base leading-relaxed text-onsignal/80 sm:text-lg">
             Solund is landing on the App Store shortly. Write if you want a
             heads-up when it does.
           </p>
           <a
             href={`mailto:${SITE.supportEmail}?subject=Solund`}
-            className="reveal mt-10 inline-flex items-center rounded-full bg-signal px-7 py-3.5 text-sm font-semibold text-onsignal transition-transform hover:scale-[1.03]"
+            className="reveal mt-10 inline-flex items-center rounded-full bg-onsignal px-8 py-4 text-sm font-bold text-signal transition-transform duration-200 ease-[var(--ease-out-swift)] hover:scale-[1.03]"
           >
             {SITE.supportEmail}
           </a>

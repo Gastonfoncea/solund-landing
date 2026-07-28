@@ -17,7 +17,7 @@ export function LegalPage({
   return (
     <article className="mx-auto max-w-3xl px-6 pt-36 pb-24 sm:px-10 sm:pt-44">
       <header className="border-b border-faint/25 pb-10">
-        <h1 className="font-display text-[clamp(2.2rem,5.5vw,3.4rem)] leading-[1.02] font-semibold tracking-[-0.025em]">
+        <h1 className="font-display text-[clamp(2.2rem,5.5vw,3.4rem)] leading-[1.02] font-extrabold tracking-[-0.035em]">
           {title}
         </h1>
         <p className="mt-6 max-w-[54ch] text-base leading-relaxed text-muted">
@@ -54,7 +54,7 @@ export function Section({
 }) {
   return (
     <section>
-      <h2 className="font-display text-xl font-semibold tracking-[-0.01em] sm:text-2xl">
+      <h2 className="font-display text-xl font-extrabold tracking-[-0.02em] sm:text-2xl">
         {title}
       </h2>
       <div className="mt-4 space-y-4 text-[0.975rem] leading-[1.75] text-muted">

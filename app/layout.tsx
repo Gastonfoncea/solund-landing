@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Archivo, Fraunces } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/app/components/site-footer";
 import { SiteHeader } from "@/app/components/site-header";
 import { SITE } from "@/app/lib/site";
 
-/* Fraunces para las declaraciones: serif de alto contraste, tibia, con
-   ópticas variables. Archivo abajo, de grotesca utilitaria, para que el
-   contraste entre "lo que se afirma" y "lo que se explica" sea visible. */
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
-  display: "swap",
-});
-
+/* Una sola familia, como la app: ahí todo es SF Pro y la jerarquía la hace el
+   PESO y el ANCHO, no un cambio de tipografía. Archivo es variable en `wght`
+   (100-900) y `wdth` (62-125), así que reproduce en web lo que en SwiftUI es
+   `.system(weight: .black).fontWidth(.expanded)` — los numerales héroe de
+   MissionView. El eje `wdth` hay que pedirlo explícito o no se descarga. */
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
+  axes: ["wdth"],
   display: "swap",
 });
 
@@ -51,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${archivo.variable} h-full antialiased`}
+      className={`${archivo.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-night text-ink">
         <SiteHeader />

@@ -43,6 +43,27 @@ rubro antes del submit.
 
 ## Design system
 
-Los tokens de color en `app/globals.css` son los mismos que
-`steptime/DesignSystem/Theme.swift` en el repo de iOS. Si cambian allá, cambian
-acá.
+Sale entero de la app iOS, no al revés:
+
+- **Color** — los tokens de `app/globals.css` son los mismos que
+  `steptime/DesignSystem/Theme.swift`. El `horizon` es `DawnBackground`; el
+  `unlock` es `Theme.unlockGradient`, y como en la app aparece **una sola vez**,
+  en el cierre: es el clímax, no un fondo más.
+- **Tipografía** — una sola familia, porque la app es toda SF Pro y la jerarquía
+  la hacen el peso y el ancho. Archivo es variable en `wght` y `wdth`, así que
+  `.numeral` (wdth 125 / wght 900) reproduce los numerales héroe de
+  `MissionView` y `.font-display` (wdth 112) el resto.
+- **Movimiento** — la curva es `--ease-out-swift`, la `.easeOut` de SwiftUI que
+  usa toda la app. Una entrada escalonada al cargar y reveals al scrollear; nada
+  más.
+
+## Screenshots
+
+`app/shots/*.png` son las capturas reales del simulador — las mismas que van al
+App Store, generadas con `ScreenshotHost.swift` (`SCREENSHOT_SCREEN=mission`,
+etc.) y reducidas al 50% (660×1434). No son mockups: si la UI de la app cambia,
+la landing miente hasta que se regeneren desde `assets/appstore/raw/`.
+
+Son **dos**, no las cuatro del set: la home prueba que la alarma existe y la
+misión prueba la idea entera. `unlock` y `stats` se sacaron porque repetían lo
+que el texto ya dice — el unlock, además, es la sección naranja del cierre.
