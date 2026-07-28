@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* Design system "amanecer firme" — los tokens son los mismos que
+   steptime/DesignSystem/Theme.swift en el repo de la app iOS.
+   Si cambian allá, cambian acá. */
+@theme {
+  --color-night: #15100f; /* grafito tibio */
+  --color-surface: #241f1d;
+  --color-ink: #fff7f0; /* blanco cálido */
+  --color-muted: #a8988a;
+  --color-faint: #6b625a;
+  --color-signal: #ff6e2c; /* "primera luz" — solo lo que importa */
+  --color-onsignal: #2a1206;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-archivo);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-night);
+    color: var(--color-ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-signal);
+    color: var(--color-onsignal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@utility font-display {
+  /* Fraunces con las astas rectas: la variante "wonky" es simpática y esta
+     marca no lo es. Firme, no juguetona. */
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+@utility grain {
+  /* Grano: rompe el plano del fondo para que el degradado no bandee. */
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@utility horizon {
+  /* El "horizonte de luz" de la app: el tope se mantiene oscuro a cualquier
+     hora y solo el borde inferior se enciende. El contenido vive arriba, así
+     que siempre queda sobre fondo oscuro y legible. */
+  background-image:
+    radial-gradient(
+      120% 60% at 50% 116%,
+      rgba(255, 140, 70, 0.4) 0%,
+      rgba(194, 74, 24, 0.19) 32%,
+      rgba(52, 34, 30, 0.48) 62%,
+      transparent 78%
+    ),
+    linear-gradient(to bottom, #15100f 0%, #15100f 46%, #1d1614 78%, #241b18 100%);
+}
+
+/* Entrada: una sola secuencia escalonada al cargar. Más memorable que veinte
+   micro-interacciones sueltas. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+/* Reveals al scrollear. Aditivo a propósito: si el navegador no soporta
+   animation-timeline, el contenido ya está visible y no se rompe nada. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 4% cover 24%;
+    }
+  }
+}
