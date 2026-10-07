@@ -49,7 +49,7 @@ export default function Home() {
               className="enter pill border-signal/35 bg-signal/8 text-signal"
               style={{ animationDelay: "0ms" }}
             >
-              For iPhone · Coming soon
+              For iPhone · Now on the App Store
             </p>
 
             <h1
@@ -68,13 +68,23 @@ export default function Home() {
               way.
             </p>
 
-            <Link
-              href="#how"
-              className="enter mt-10 inline-block text-sm text-muted underline decoration-faint underline-offset-[6px] transition-colors hover:text-ink hover:decoration-signal"
+            <div
+              className="enter mt-10 flex flex-wrap items-center gap-x-7 gap-y-4"
               style={{ animationDelay: "270ms" }}
             >
-              See how it works
-            </Link>
+              <a
+                href={SITE.appStoreUrl}
+                className="inline-flex items-center rounded-full bg-signal px-7 py-3.5 text-sm font-bold text-onsignal transition-transform duration-200 ease-[var(--ease-out-swift)] hover:scale-[1.03]"
+              >
+                Download on the App Store
+              </a>
+              <Link
+                href="#how"
+                className="text-sm text-muted underline decoration-faint underline-offset-[6px] transition-colors hover:text-ink hover:decoration-signal"
+              >
+                See how it works
+              </Link>
+            </div>
           </div>
 
           <div className="enter-wake -mb-24 flex justify-center sm:-mb-32 lg:-mb-40 lg:justify-end">
@@ -261,14 +271,14 @@ export default function Home() {
             Up. The day is yours.
           </h2>
           <p className="reveal mx-auto mt-6 max-w-[40ch] text-base leading-relaxed text-onsignal/80 sm:text-lg">
-            Solund is landing on the App Store shortly. Write if you want a
-            heads-up when it does.
+            Solund is on the App Store for iPhone. {PRICING.trialDays} days
+            free to see if your mornings change.
           </p>
           <a
-            href={`mailto:${SITE.supportEmail}?subject=Solund`}
+            href={SITE.appStoreUrl}
             className="reveal mt-10 inline-flex items-center rounded-full bg-onsignal px-8 py-4 text-sm font-bold text-signal transition-transform duration-200 ease-[var(--ease-out-swift)] hover:scale-[1.03]"
           >
-            {SITE.supportEmail}
+            Download on the App Store
           </a>
         </div>
       </section>

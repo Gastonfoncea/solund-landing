@@ -13,6 +13,10 @@ export const SITE = {
   url: "https://solund.app",
   supportEmail: "hola@solund.app",
 
+  /** La app en el App Store (storefront de US). */
+  appStoreUrl: "https://apps.apple.com/us/app/solund/id6794460644",
+  appStoreId: "6794460644",
+
   /** Quién responde legalmente por la app. Confirmar antes de publicar. */
   legalEntity: "Gastón Foncea",
   /** Ley aplicable de los términos. Confirmar antes de publicar. */

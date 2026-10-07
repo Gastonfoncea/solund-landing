@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/app/components/wordmark";
+import { SITE } from "@/app/lib/site";
 
 export function SiteHeader() {
   return (
@@ -22,6 +23,12 @@ export function SiteHeader() {
           <Link href="/#price" className="transition-colors hover:text-ink">
             Price
           </Link>
+          <a
+            href={SITE.appStoreUrl}
+            className="font-bold text-signal transition-colors hover:text-ink"
+          >
+            Get the app
+          </a>
         </nav>
       </div>
     </header>

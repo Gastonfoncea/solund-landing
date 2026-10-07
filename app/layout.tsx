@@ -25,6 +25,8 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   applicationName: SITE.name,
+  /* Smart App Banner de Safari en iPhone: ofrece abrir o bajar la app. */
+  itunes: { appId: SITE.appStoreId },
   openGraph: {
     type: "website",
     siteName: SITE.name,
