@@ -23,7 +23,7 @@ export const SITE = {
   jurisdiction: "Argentina",
 
   /** Última revisión de los textos legales. Actualizar al editarlos. */
-  legalUpdated: "July 28, 2026",
+  legalUpdated: "November 11, 2026",
 } as const;
 
 /** Precios de referencia, en USD. El precio real lo define el storefront. */

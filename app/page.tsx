@@ -26,12 +26,12 @@ const NEVER = [
     body: "Screen Time hands the app opaque tokens, not content. Solund knows an app is blocked. It has no idea what's inside it.",
   },
   {
-    title: "Nothing leaves your phone.",
-    body: "Steps, alarms and streaks live in local storage on your device. There is no Solund server, no account, no sign-up.",
+    title: "Your history stays on your phone.",
+    body: "Alarms, streaks and your detailed history live in local storage on your device. No account, no sign-up.",
   },
   {
     title: "No trackers, no ads.",
-    body: "No analytics SDK, no advertising ID, no data sold. The only network call the app makes is to process your subscription.",
+    body: "No advertising ID, no data sold. RevenueCat processes your subscription; TelemetryDeck receives usage events, never the names of your blocked apps.",
   },
 ];
 

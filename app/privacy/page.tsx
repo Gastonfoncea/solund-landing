@@ -5,23 +5,23 @@ import { SITE } from "@/app/lib/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "What Solund stores, what it can see, and what never leaves your iPhone.",
+    "What Solund stores on your iPhone, what it can see, and what it sends to our providers.",
 };
 
 export default function Privacy() {
   return (
     <LegalPage
       title="Privacy Policy"
-      intro="Solund runs entirely on your iPhone. There is no account to create, no server storing your mornings, and no analytics watching you use the app. This page explains that in detail."
+      intro="Solund does not require an account. Alarm settings and detailed morning history are stored on your iPhone. We use RevenueCat for subscriptions and TelemetryDeck to understand feature usage and diagnose problems. This page explains what stays on your device and what is sent to those providers."
     >
       <Section title="The short version">
         <List
           items={[
-            "Solund has no user accounts and collects no personal information.",
-            "Your alarms, step counts, streak and history are stored on your device only.",
+            "Solund has no user accounts and does not ask for your name or email address in the app.",
+            "Your alarm settings, app selection and detailed morning history are stored on your device. Selected usage events and summaries are sent to TelemetryDeck.",
             "Solund cannot see what is on your screen or inside the apps it blocks.",
-            "There is no analytics SDK, no advertising identifier, and no tracking across apps or websites.",
-            "The only data that leaves your device is what Apple and our subscription provider need to process a purchase.",
+            "We do not use advertising identifiers or track you across other apps or websites.",
+            "Apple and RevenueCat process purchase and subscription information. TelemetryDeck receives usage and diagnostic events described below.",
           ]}
         />
       </Section>
@@ -29,8 +29,9 @@ export default function Privacy() {
       <Section title="Information stored on your device">
         <p>
           The following stays in local storage on your iPhone, inside the app&rsquo;s
-          own container. It is not transmitted to us and we have no way of
-          reading it:
+          own container. We do not upload a copy of these records. Usage events
+          can include selected values and summaries, as described in the
+          analytics section:
         </p>
         <List
           items={[
@@ -59,8 +60,10 @@ export default function Privacy() {
           ]}
         />
         <p>
-          Deleting Solund from your iPhone deletes all of it. You can also erase
-          your history at any time from Settings, without deleting the app.
+          Deleting Solund from your iPhone removes its local data. You can also
+          erase your history from Settings without deleting the app. These
+          actions do not cancel an App Store subscription or erase records
+          already sent to our providers.
         </p>
       </Section>
 
@@ -102,8 +105,47 @@ export default function Privacy() {
           or anything about how you use the app.
         </p>
         <p>
-          This is the only network connection Solund makes. The app has no
-          backend of its own.
+          Subscription processing is separate from the usage analytics
+          described below.
+        </p>
+      </Section>
+
+      <Section title="Usage analytics">
+        <p>
+          We use{" "}
+          <a
+            href="https://telemetrydeck.com/privacy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ink underline decoration-faint underline-offset-4 transition-colors hover:decoration-signal"
+          >
+            TelemetryDeck
+          </a>{" "}
+          to understand whether features work, where people encounter problems,
+          and whether they return. Events may include:
+        </p>
+        <List
+          items={[
+            "App launches, navigation, onboarding answers and time spent on onboarding screens.",
+            "Alarm and focus configuration changes, permission status, scheduling results and error codes.",
+            "Blocking and unlock attempts, step counts associated with an attempt, completion times, emergency unlocks and summaries of completed mornings.",
+            "Paywall interactions, purchase or restoration results, subscription status observed by the app and notification opens.",
+            "App and operating system versions, device model, language and region, and a hashed device-derived identifier used to distinguish installations.",
+          ]}
+        />
+        <p>
+          We do not send alarm labels, focus-session names, Screen Time tokens,
+          the names of the apps you select for blocking, or screen contents.
+          An onboarding answer about a distracting app is a separate, voluntary
+          answer; it is not read from your Screen Time selection.
+        </p>
+        <p>
+          Events from the blocking extensions may wait on your device until you
+          open Solund again. That local queue holds up to 200 events and retains
+          them for up to 30 days. Events include when the action happened, so
+          delayed delivery can be distinguished from current activity.
+          An update may also send a one-time summary of completed mornings
+          already recorded locally.
         </p>
       </Section>
 
@@ -111,8 +153,10 @@ export default function Privacy() {
         <p>
           Reminders are off by default and only turn on if you enable them. When
           enabled, notifications are scheduled locally on your device — nothing
-          is sent from a server, and we do not know whether you received or
-          opened one. You can turn them off in Solund&rsquo;s Settings or in iOS
+          is sent from a server. When you open Solund by tapping a notification,
+          we record the kind of reminder opened, not its text. We do not receive
+          proof that a notification was displayed. You can turn reminders off in
+          Solund&rsquo;s Settings or in iOS
           Settings at any time.
         </p>
       </Section>
@@ -120,8 +164,7 @@ export default function Privacy() {
       <Section title="What we do not do">
         <List
           items={[
-            "We do not sell, rent or share personal information. There is none to sell.",
-            "We do not use third-party analytics, crash reporting or attribution SDKs.",
+            "We do not sell or rent your data or share it for third-party advertising.",
             "We do not use advertising identifiers or serve ads.",
             "We do not track you across other apps or websites.",
           ]}
@@ -130,15 +173,15 @@ export default function Privacy() {
 
       <Section title="Your rights">
         <p>
-          Because Solund does not collect personal information or maintain
-          accounts, there is no profile for us to export, correct or delete.
-          Everything the app holds about you is on your device and under your
-          control.
+          You can erase local history in Solund&rsquo;s Settings. For questions
+          or requests about data processed by the app or its providers, contact
+          us at {SITE.supportEmail}. Solund has no account directory, so we may
+          need additional information to locate a provider record.
         </p>
         <p>
-          For data held by Apple or RevenueCat in connection with your purchase,
-          contact them directly — or write to us and we will help you route the
-          request.
+          Apple, RevenueCat and TelemetryDeck explain their data practices in
+          their own privacy policies. You can contact them directly or write
+          to us for help routing a request.
         </p>
       </Section>
 
