@@ -32,7 +32,7 @@ export const FAQ: ReadonlyArray<{ q: string; a: string }> = [
   },
   {
     q: "Can I skip it?",
-    a: "Only in a real emergency — walking is meant to be the easier way out. For real emergencies, Settings has an emergency unlock: keep the screen open for 20 seconds and you get 15 minutes, then the block comes back. And if you never walk, the apps unlock on their own four hours after the alarm.",
+    a: "Only in a real emergency — walking is meant to be the easier way out. Settings has an emergency unlock: keep the screen open for 20 seconds and you get 15 minutes, then the block comes back. And if you never walk, the apps unlock on their own four hours after the alarm.",
   },
   {
     q: "Which apps can I block?",
