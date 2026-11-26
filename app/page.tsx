@@ -1,6 +1,30 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Phone } from "@/app/components/phone";
+import { FAQ } from "@/app/lib/faq";
 import { PRICING, SITE } from "@/app/lib/site";
+import { homeJsonLd, serializeJsonLd } from "@/app/lib/structured-data";
+
+/* STE-152: título y descripción con la categoría ("app blocker") y la mañana.
+   Canonical en www, que es donde sirve el sitio. */
+export const metadata: Metadata = {
+  title: { absolute: SITE.title },
+  description: SITE.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    locale: "en_US",
+    title: SITE.title,
+    description: SITE.description,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.title,
+    description: SITE.description,
+  },
+};
 
 const STEPS = [
   {
@@ -38,6 +62,11 @@ const NEVER = [
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(homeJsonLd()) }}
+      />
+
       {/* ── Hero ─────────────────────────────────────────────────
           El teléfono a la derecha, grande, y desbordando por abajo: la mitad
           inferior de la home es degradado vacío, así que recortarla no pierde
@@ -56,7 +85,7 @@ export default function Home() {
               className="enter font-display mt-7 max-w-[13ch] text-[clamp(2.7rem,7.6vw,5.4rem)] leading-[0.94] font-extrabold tracking-[-0.035em] text-balance"
               style={{ animationDelay: "90ms" }}
             >
-              Mornings aren&rsquo;t for scrolling.
+              The app blocker that gets you out of bed.
             </h1>
 
             <p
@@ -250,6 +279,30 @@ export default function Home() {
             </Link>
             .
           </p>
+        </div>
+      </section>
+
+      {/* ── FAQ (STE-152) ────────────────────────────────────────
+          Las mismas preguntas que el `FAQPage` del JSON-LD: salen de
+          `app/lib/faq.ts`. Todas visibles, sin acordeón, para que lo que lee
+          la persona y lo que lee el buscador sea lo mismo. */}
+      <section id="faq" className="scroll-mt-24 border-t border-faint/20">
+        <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+          <h2 className="reveal font-display text-[clamp(1.7rem,3.4vw,2.6rem)] leading-tight font-extrabold tracking-[-0.03em]">
+            Questions, answered.
+          </h2>
+          <dl className="mt-14 grid gap-x-20 gap-y-12 md:grid-cols-2">
+            {FAQ.map(({ q, a }) => (
+              <div key={q} className="reveal">
+                <dt className="font-display text-lg font-extrabold tracking-[-0.02em] sm:text-xl">
+                  {q}
+                </dt>
+                <dd className="mt-3 max-w-[52ch] text-[0.975rem] leading-relaxed text-muted">
+                  {a}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
