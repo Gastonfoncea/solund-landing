@@ -17,10 +17,14 @@ const archivo = Archivo({
   display: "swap",
 });
 
+/* STE-152: lo que vale para todo el sitio. La home pisa título, descripción,
+   canonical y `og:url` en `app/page.tsx`; las legales ponen su canonical.
+   `og:url` NO va acá: heredado, le decía a `/privacy` que su URL era la home.
+   La imagen para compartir sale de `app/opengraph-image.tsx`. */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
+    default: SITE.title,
     template: `%s — ${SITE.name}`,
   },
   description: SITE.description,
@@ -30,14 +34,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.tagline}`,
-    description: SITE.description,
-    url: SITE.url,
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.tagline}`,
-    description: SITE.description,
   },
 };
 

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "What Solund stores on your iPhone, what it can see, and what it sends to our providers.",
+  /* STE-152: cada página dice su propia URL canónica (www). */
+  alternates: { canonical: "/privacy" },
 };
 
 export default function Privacy() {

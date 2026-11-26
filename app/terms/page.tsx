@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Terms of Use",
   description:
     "The agreement covering your use of Solund, including subscription terms and the limits of what an alarm app can promise.",
+  /* STE-152: cada página dice su propia URL canónica (www). */
+  alternates: { canonical: "/terms" },
 };
 
 export default function Terms() {
