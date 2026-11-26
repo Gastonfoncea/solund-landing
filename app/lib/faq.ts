@@ -8,9 +8,9 @@ import { PRICING } from "@/app/lib/site";
  * Cada respuesta que describe la app está verificada contra `solund-app`:
  * - pasos 15/30/50: `MissionDifficulty` en `steptime/Services/AlarmStore.swift`;
  * - la alarma con Stop y Snooze normales: `AlarmPresentationBuilder.swift`;
- * - emergency unlock (20 s con la pantalla abierta → 15 min) y "Unblock
- *   everything now": `EmergencyUnlockView.swift`, `ScreenTimeService.swift`,
- *   `SettingsView.swift`;
+ * - emergency unlock (20 s con la pantalla abierta → 15 min):
+ *   `EmergencyUnlockView.swift`, `ScreenTimeService.swift`, `SettingsView.swift`.
+ *   "Unblock everything now" no se menciona: va a cambiar (STE-156);
  * - desbloqueo solo a las 4 h: failsafe de `intervalDidEnd` en
  *   `StepTimeMonitor/DeviceActivityMonitorExtension.swift` y `AlarmStore.swift`;
  * - apps y categorías del picker de Screen Time: `familyActivityPicker` en
@@ -32,7 +32,7 @@ export const FAQ: ReadonlyArray<{ q: string; a: string }> = [
   },
   {
     q: "Can I skip it?",
-    a: "You can, but walking is meant to be the easier way out. For real emergencies, Settings has an emergency unlock: keep the screen open for 20 seconds and you get 15 minutes, then the block comes back. There’s also a button that releases every block if one ever gets stuck. And if you never walk, the apps unlock on their own four hours after the alarm.",
+    a: "You can, but walking is meant to be the easier way out. For real emergencies, Settings has an emergency unlock: keep the screen open for 20 seconds and you get 15 minutes, then the block comes back. And if you never walk, the apps unlock on their own four hours after the alarm.",
   },
   {
     q: "Which apps can I block?",
